@@ -1,9 +1,10 @@
 class CustomToolTip{
-    //Author Janith v1.5
+    //Author Janith v1.6
 
     #defaultOptions = {
         targetClass:'ctp-tooltip',
         collision:'window',
+        enableCollision:true,
         colors:{
             background:'#707070',
             text:'white',
@@ -35,6 +36,7 @@ class CustomToolTip{
     constructor (options = {
         targetClass,
         collision,
+        enableCollision,
         colors:{background,text,border},
         typoGraphy:{size,weight},
         transition:{duration,delay,easing}
@@ -54,6 +56,7 @@ class CustomToolTip{
             targetClass: options.targetClass !== undefined ? options.targetClass : this.#defaultOptions.targetClass,
 
             collision: options.collision !== undefined ? options.collision : this.#defaultOptions.collision,
+            enableCollision: options.enableCollision !== undefined ? options.enableCollision : this.#defaultOptions.enableCollision,
 
             colors: options.colors  !== undefined ? {
                 background: options.colors.background  !== undefined ? options.colors.background : this.#defaultOptions.colors.background,
@@ -194,7 +197,7 @@ class CustomToolTip{
         const bottomClip = targetElmDim.top - tooltipDim.bottom;
         const TopClip = collisionDim.top - tooltipDim.top;
 
-        if(leftClip > 0){
+        if(leftClip < 0 && this.#options.enableCollision){
             ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - leftClip) - this.#defaultDimensions.tp.padding }px`;
         }else{
             ToolTip.style.left = `-${(tooltipDim.width/2) - this.#defaultDimensions.tp.padding }px`;
