@@ -1,10 +1,11 @@
 class CustomToolTip{
-    //Author Janith v1.6
+    //Author Janith v1.7
 
     #defaultOptions = {
         targetClass:'ctp-tooltip',
         collision:'window',
         enableCollision:true,
+        enableTopCollision:true,
         colors:{
             background:'#707070',
             text:'white',
@@ -57,6 +58,7 @@ class CustomToolTip{
 
             collision: options.collision !== undefined ? options.collision : this.#defaultOptions.collision,
             enableCollision: options.enableCollision !== undefined ? options.enableCollision : this.#defaultOptions.enableCollision,
+            enableTopCollision: options.enableTopCollision !== undefined ? options.enableTopCollision : this.#defaultOptions.enableTopCollision,
 
             colors: options.colors  !== undefined ? {
                 background: options.colors.background  !== undefined ? options.colors.background : this.#defaultOptions.colors.background,
@@ -207,7 +209,7 @@ class CustomToolTip{
             ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - rightClip) + this.#defaultDimensions.tp.padding}px`;
         }
 
-        if(TopClip > 0){
+        if(TopClip > 0 && this.#options.enableTopCollision){
             ToolTip.style.bottom = `-${(TopClip + (tooltipDim.height/2)) + 10}px`;
             ToolTip.setAttribute('isTopClipped',true);
         }else{
