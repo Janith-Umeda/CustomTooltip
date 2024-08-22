@@ -1,5 +1,5 @@
 class CustomToolTip{
-    //Author Janith v1.7
+    //Author Janith v1.8
 
     #defaultOptions = {
         targetClass:'ctp-tooltip',
@@ -199,13 +199,13 @@ class CustomToolTip{
         const bottomClip = targetElmDim.top - tooltipDim.bottom;
         const TopClip = collisionDim.top - tooltipDim.top;
 
-        if(leftClip < 0 && this.#options.enableCollision){
+        if(leftClip > 0 && this.#options.enableCollision){
             ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - leftClip) - this.#defaultDimensions.tp.padding }px`;
         }else{
             ToolTip.style.left = `-${(tooltipDim.width/2) - this.#defaultDimensions.tp.padding }px`;
         }
-
-        if(rightClip < 0){
+        
+        if(rightClip < 0 && this.#options.enableCollision){
             ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - rightClip) + this.#defaultDimensions.tp.padding}px`;
         }
 
