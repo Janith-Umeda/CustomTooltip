@@ -1,5 +1,5 @@
 class CustomToolTip{
-    //Author Janith v1.8
+    //Author Janith v1.9
 
     #defaultOptions = {
         targetClass:'ctp-tooltip',
@@ -198,11 +198,11 @@ class CustomToolTip{
         const leftClip =  collisionDim.left - tooltipDim.left;
         const bottomClip = targetElmDim.top - tooltipDim.bottom;
         const TopClip = collisionDim.top - tooltipDim.top;
-
+        
         if(leftClip > 0 && this.#options.enableCollision){
             ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - leftClip) - this.#defaultDimensions.tp.padding }px`;
         }else{
-            ToolTip.style.left = `-${(tooltipDim.width/2) - this.#defaultDimensions.tp.padding }px`;
+            // ToolTip.style.left = `-${(tooltipDim.width/2) - this.#defaultDimensions.tp.padding }px`;
         }
         
         if(rightClip < 0 && this.#options.enableCollision){
@@ -304,3 +304,14 @@ class CustomToolTip{
     onHover(callback){this.#showCallback = callback};
     onBlur(callback){this.#hideCallback = callback};
 }
+
+function createDiv(x=0,y=0){
+    const div = document.createElement("div");
+    Object.assign(div,{
+        style:`width:150px;height:50px;background-color:${randColor()};position:absolute;top:${y}px;left:${x}px;`,
+        textContent:randColor()
+    })
+    document.body.appendChild(div);
+}
+
+const randColor = ()=>('#'+(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0'));
