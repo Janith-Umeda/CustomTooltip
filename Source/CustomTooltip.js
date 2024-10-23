@@ -203,14 +203,12 @@
             const TopClip = collisionDim.top - tooltipDim.top;
             
             if(leftClip > 0 && this.#options.enableCollision){
-                console.log(leftClip,'leftClip');
                 ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - leftClip) - this.#defaultDimensions.tp.padding }px`;
             }else{            
                 // ToolTip.style.left = `-${(tooltipDim.width/2) - this.#defaultDimensions.tp.padding }px`;
             }
             
             if(rightClip < 0 && this.#options.enableCollision){
-                console.log('rightClip',rightClip);
                 ToolTip.style.left = `-${(this.#defaultDimensions.tp.left - rightClip) + this.#defaultDimensions.tp.padding}px`;
             }
     
